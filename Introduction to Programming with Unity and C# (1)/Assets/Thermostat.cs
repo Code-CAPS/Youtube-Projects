@@ -2,6 +2,8 @@
 
 public class Thermostat : MonoBehaviour
 {
+    public float temperature = 25.0f;
+
     float CelsiusToFahrenheit(float celsiusTemperature)
     {
         return (celsiusTemperature * 9.0f / 5.0f) + 32.0f;
