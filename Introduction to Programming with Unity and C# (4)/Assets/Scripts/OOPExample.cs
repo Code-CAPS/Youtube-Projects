@@ -1,43 +1,29 @@
 ﻿using UnityEngine;
 
-public class Bear
+public class Animal
 {
     public string name = "";
 
     // in kgs
-    public float weight = 150.0f;
+    public float weight = 0.0f;
     // in meters
-    public float height = 0.6f;
+    public float height = 0.0f;
 }
 
-public class Wolf
+public class Bear : Animal
 {
-    public string name = "";
-
-    // in kgs
-    public float weight = 23.0f;
-    // in meters
-    public float height = 0.28f;
 }
 
-public class Dolphin
+public class Wolf : Animal
 {
-    public string name = "";
-
-    // in kgs
-    public float weight = 150.0f;
-    // in meters
-    public float height = 0.33f;
 }
 
-public class Shark
+public class Dolphin : Animal
 {
-    public string name = "";
+}
 
-    // in kgs
-    public float weight = 1900.0f;
-    // in meters
-    public float height = 4.0f;
+public class Shark : Animal
+{
 }
 
 
@@ -66,11 +52,15 @@ public class OOPExample : MonoBehaviour
         shark.weight = 2100.0f;
         shark.height = 4.2f;
 
+        Animal[] theZoo = new Animal[] { bear, wolf, dolphin, shark };
+
         Debug.Log("The animals' names are:");
-        Debug.Log(bear.name);
-        Debug.Log(wolf.name);
-        Debug.Log(dolphin.name);
-        Debug.Log(shark.name);
+
+        for (int i = 0; i < theZoo.Length; i++)
+        {
+            Animal animal = theZoo[i];
+            Debug.Log(animal.name);
+        }
     }
 
     // Update is called once per frame
