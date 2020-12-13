@@ -26,10 +26,10 @@ public class ZooWithDataStructures : MonoBehaviour
 
         GameObject newBear = new GameObject("Bear Two");
         newBear.transform.SetParent(this.transform);
-        AnimalAttributes animalAttributes = newBear.AddComponent<AnimalAttributes>();
-        animalAttributes.animalName = "Berry";
-        animalAttributes.weight = 175.0f;
-        animalAttributes.height = 0.75f;
+        AnimalAttributes newBearAttributes = newBear.AddComponent<AnimalAttributes>();
+        newBearAttributes.animalName = "Berry";
+        newBearAttributes.weight = 175.0f;
+        newBearAttributes.height = 0.75f;
 
         // allocate a new array
         AnimalAttributes[] newAnimals = new AnimalAttributes[animals.Length + 1];
@@ -41,7 +41,7 @@ public class ZooWithDataStructures : MonoBehaviour
         }
 
         // store our new bear's attributes
-        newAnimals[animals.Length] = animalAttributes;
+        newAnimals[animals.Length] = newBearAttributes;
 
         // set the new array as the member variable
         animals = newAnimals;
@@ -50,8 +50,8 @@ public class ZooWithDataStructures : MonoBehaviour
 
         for (int i = 0; i < animals.Length; i++)
         {
-            AnimalAttributes animalAttribute = animals[i];
-            Debug.Log(animalAttribute.animalName);
+            AnimalAttributes animalAttributes = animals[i];
+            Debug.Log(animalAttributes.animalName);
         }
         */
 
@@ -70,13 +70,13 @@ public class ZooWithDataStructures : MonoBehaviour
 
         GameObject newBear = new GameObject("Bear Two");
         newBear.transform.SetParent(this.transform);
-        AnimalAttributes animalAttributes = newBear.AddComponent<AnimalAttributes>();
-        animalAttributes.animalName = "Berry";
-        animalAttributes.weight = 175.0f;
-        animalAttributes.height = 0.75f;
+        AnimalAttributes newBearAttributes = newBear.AddComponent<AnimalAttributes>();
+        newBearAttributes.animalName = "Berry";
+        newBearAttributes.weight = 175.0f;
+        newBearAttributes.height = 0.75f;
 
         // store our new bear's attributes
-        animals.Add(animalAttributes);
+        animals.Add(newBearAttributes);
 
         Debug.Log("The animals in the zoo with the new bear are:");
 
@@ -85,6 +85,37 @@ public class ZooWithDataStructures : MonoBehaviour
             AnimalAttributes animalAttribute = animals[i];
             Debug.Log(animalAttribute.animalName);
         }
+
+        //
+        // let's find an animal by name
+
+        // with arrays and a search function, it might look like this
+
+        string animalName = "Berry";
+
+        for (int i = 0; i < animals.Count; i++)
+        {
+            AnimalAttributes animalAttributes = animals[i];
+            if (animalAttributes.animalName == animalName)
+            {
+                Debug.Log(animalAttributes.animalName + "'s weight is " + animalAttributes.weight.ToString("F0") + " kgs.");
+            }
+        }
+
+        // try using dictionaries
+        // in an actual game, you would want to store your dictionary as a member variable
+
+        // create your dictionary
+        Dictionary<string, AnimalAttributes> animalDictionary = new Dictionary<string, AnimalAttributes>();
+        for (int i = 0; i < animals.Count; i++)
+        {
+            AnimalAttributes animalAttributes = animals[i];
+            animalDictionary[animalAttributes.animalName] = animalAttributes;
+        }
+
+        // retrieve the animal by name
+        AnimalAttributes berryTheBear = animalDictionary[animalName];
+        Debug.Log(berryTheBear.animalName + "'s weight is " + berryTheBear.weight.ToString("F0") + " kgs.");
     }
 
     // Update is called once per frame
