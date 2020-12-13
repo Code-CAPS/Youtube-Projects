@@ -117,10 +117,4 @@ public class ZooWithDataStructures : MonoBehaviour
         AnimalAttributes berryTheBear = animalDictionary[animalName];
         Debug.Log(berryTheBear.animalName + "'s weight is " + berryTheBear.weight.ToString("F0") + " kgs.");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
