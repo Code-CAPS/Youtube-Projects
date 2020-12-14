@@ -18,7 +18,7 @@ public class MessagesExample : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // this is the most common update-style of message
+        // this is the most common update-style message
         Debug.Log("Third!");
     }
 

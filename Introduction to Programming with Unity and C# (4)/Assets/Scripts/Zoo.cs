@@ -11,8 +11,8 @@ public class Zoo : MonoBehaviour
 
         for (int i = 0; i < animals.Length; i++)
         {
-            AnimalAttributes animalAttribute = animals[i];
-            Debug.Log(animalAttribute.animalName);
+            AnimalAttributes animalAttributes = animals[i];
+            Debug.Log(animalAttributes.animalName);
         }
     }
 

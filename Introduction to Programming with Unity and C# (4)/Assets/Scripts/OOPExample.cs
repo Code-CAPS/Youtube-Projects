@@ -6,6 +6,7 @@ public class Animal
 
     // in kgs
     public float weight = 0.0f;
+
     // in meters
     public float height = 0.0f;
 }
@@ -25,7 +26,6 @@ public class Dolphin : Animal
 public class Shark : Animal
 {
 }
-
 
 public class OOPExample : MonoBehaviour
 {
@@ -52,13 +52,13 @@ public class OOPExample : MonoBehaviour
         shark.weight = 2100.0f;
         shark.height = 4.2f;
 
-        Animal[] theZoo = new Animal[] { bear, wolf, dolphin, shark };
+        Animal[] theAnimals = new Animal[] { bear, wolf, dolphin, shark };
 
         Debug.Log("The animals' names are:");
 
-        for (int i = 0; i < theZoo.Length; i++)
+        for (int i = 0; i < theAnimals.Length; i++)
         {
-            Animal animal = theZoo[i];
+            Animal animal = theAnimals[i];
             Debug.Log(animal.name);
         }
     }

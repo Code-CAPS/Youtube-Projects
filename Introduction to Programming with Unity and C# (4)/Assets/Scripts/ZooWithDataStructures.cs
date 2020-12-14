@@ -4,7 +4,6 @@ using UnityEngine;
 public class ZooWithDataStructures : MonoBehaviour
 {
     public List<AnimalAttributes> animals = new List<AnimalAttributes>();
-    //public AnimalAttributes[] animals = null;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +21,7 @@ public class ZooWithDataStructures : MonoBehaviour
             Debug.Log(animalAttribute.animalName);
         }
 
-        // lets add another animal
+        // lets add another bear
 
         GameObject newBear = new GameObject("Bear Two");
         newBear.transform.SetParent(this.transform);
@@ -66,7 +65,7 @@ public class ZooWithDataStructures : MonoBehaviour
             Debug.Log(animalAttribute.animalName);
         }
 
-        // lets add another animal
+        // let's add another bear
 
         GameObject newBear = new GameObject("Bear Two");
         newBear.transform.SetParent(this.transform);
@@ -82,14 +81,13 @@ public class ZooWithDataStructures : MonoBehaviour
 
         for (int i = 0; i < animals.Count; i++)
         {
-            AnimalAttributes animalAttribute = animals[i];
-            Debug.Log(animalAttribute.animalName);
+            AnimalAttributes animalAttributes = animals[i];
+            Debug.Log(animalAttributes.animalName);
         }
 
-        //
-        // let's find an animal by name
+        // let's find an animal by its name
 
-        // with arrays and a search function, it might look like this
+        // you can search arrays or lists like this
 
         string animalName = "Berry";
 
@@ -98,14 +96,18 @@ public class ZooWithDataStructures : MonoBehaviour
             AnimalAttributes animalAttributes = animals[i];
             if (animalAttributes.animalName == animalName)
             {
-                Debug.Log(animalAttributes.animalName + "'s weight is " + animalAttributes.weight.ToString("F0") + " kgs.");
+                Debug.Log(animalAttributes.animalName + "'s weight is " +
+                          animalAttributes.weight.ToString("F0") + " kgs.");
             }
         }
 
-        // try using dictionaries
+        //
+        // Dictionary Example
+
+        // if you are searching through arrays and lists frequently, try dictionaries
         // in an actual game, you would want to store your dictionary as a member variable
 
-        // create your dictionary
+        // create a dictionary
         Dictionary<string, AnimalAttributes> animalDictionary = new Dictionary<string, AnimalAttributes>();
         for (int i = 0; i < animals.Count; i++)
         {
@@ -113,8 +115,14 @@ public class ZooWithDataStructures : MonoBehaviour
             animalDictionary[animalAttributes.animalName] = animalAttributes;
         }
 
-        // retrieve the animal by name
+        // retrieve the animal by its name
         AnimalAttributes berryTheBear = animalDictionary[animalName];
         Debug.Log(berryTheBear.animalName + "'s weight is " + berryTheBear.weight.ToString("F0") + " kgs.");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 }

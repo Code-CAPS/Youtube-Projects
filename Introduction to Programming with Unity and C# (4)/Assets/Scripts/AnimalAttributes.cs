@@ -6,6 +6,7 @@ public class AnimalAttributes : MonoBehaviour
 
     // in kgs
     public float weight = 0.0f;
+
     // in meters
     public float height = 0.0f;
 }
