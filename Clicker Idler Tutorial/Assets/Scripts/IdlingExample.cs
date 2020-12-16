@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class IdlingExample : MonoBehaviour
 {
-    public Color colorMin = Color.blue;
-    public Color colorMax = Color.red;
+    public Color colorMin = new Color(109.0f / 255.0f, 161.0f / 255.0f, 116.0f / 255.0f, 1.0f);
+    public Color colorMax = new Color(189.0f / 255.0f, 67.0f / 255.0f, 52.0f / 255.0f, 1.0f);
 
     public List<OnIdle> idlers = new List<OnIdle>();
 
@@ -41,7 +41,7 @@ public class IdlingExample : MonoBehaviour
                 colorResult.b = Mathf.Lerp(colorMin.b, colorMax.b, percentage);
                 colorResult.a = Mathf.Lerp(colorMin.a, colorMax.a, percentage);
 
-                renderer.material.color = colorResult;
+                renderer.material.SetColor("_BaseColor", colorResult);
             }
         }
     }
