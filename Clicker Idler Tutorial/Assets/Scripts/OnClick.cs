@@ -2,7 +2,7 @@
 
 public class OnClick : MonoBehaviour
 {
-    // declare callback delegate
+    // declare a callback delegate
     public delegate void OnClickDelegate(OnClick onClickScript);
 
     // declare a member variable of the type of the callback delegate
@@ -10,7 +10,7 @@ public class OnClick : MonoBehaviour
 
     void OnMouseUp()
     {
-        Debug.Log("Mouse Click On: " + this.name);
+        Debug.Log("Mouse Click on " + this.name);
 
         if (theDelegate != null)
         {

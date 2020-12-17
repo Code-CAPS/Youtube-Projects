@@ -43,6 +43,8 @@ public class AdvancedPickingExample : MonoBehaviour
                 }
             }
 
+            // We need to see if the mouse is over a click target using rays.
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             LayerMask layerMask = LayerMask.GetMask(new string[] { layerNameMask });
 
@@ -50,12 +52,20 @@ public class AdvancedPickingExample : MonoBehaviour
             bool result = Physics.Raycast(ray, out raycastHit, float.MaxValue, layerMask.value);
             if (result)
             {
-                var renderer = raycastHit.transform.gameObject.GetComponent<Renderer>();
+                // The ray hit something!
+
+                //Debug.DrawRay(ray.origin, ray.direction, Color.red, 10.0f);
+
+                var renderer = raycastHit.transform.GetComponent<Renderer>();
                 if (renderer != null)
                 {
                     renderer.material = materialSelect;
                 }
             }
+            //else
+            //{
+            //    Debug.DrawRay(ray.origin, ray.direction, Color.green, 10.0f);
+            //}
         }
     }
 }

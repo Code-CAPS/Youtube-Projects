@@ -34,6 +34,8 @@ public class IdlingExample : MonoBehaviour
             {
                 Color colorResult = Color.white;
 
+                // Linearly Interpolate (Lerp) the Min and Max colors.
+
                 float percentage = idler.valueCurrent / idler.valueMax;
 
                 colorResult.r = Mathf.Lerp(colorMin.r, colorMax.r, percentage);

@@ -12,7 +12,8 @@ public class OnIdle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UnityEngine.Assertions.Assert.IsTrue(valueMax >= valueMin);
+        // enforce some basic assumptions about the numbers
+        UnityEngine.Assertions.Assert.IsTrue(valueMax > valueMin);
         UnityEngine.Assertions.Assert.IsTrue(valueMax > 0.0f);
         UnityEngine.Assertions.Assert.IsTrue(valueRate > 0.0f);
     }
