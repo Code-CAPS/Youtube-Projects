@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 366492948}
   - component: {fileID: 366492947}
   m_Layer: 0
-  m_Name: Picking Example
+  m_Name: Advanced Picking Example
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
