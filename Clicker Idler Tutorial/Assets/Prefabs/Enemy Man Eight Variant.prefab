@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8252325917567921193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677396899815358387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f9c17564c703a4281ce0f56f738ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 10
+  healthCurrent: 10
+--- !u!1001 &7490994265346341258
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4264388573956767605, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 100202a854990cf458c7260e1df4b08d, type: 3}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275127533076261457, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278343240509097529, guid: 10a626d8767246948b41090c706bf866, type: 3}
+      propertyPath: m_Name
+      value: Enemy Man Eight Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10a626d8767246948b41090c706bf866, type: 3}
+--- !u!1 &6677396899815358387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4278343240509097529, guid: 10a626d8767246948b41090c706bf866, type: 3}
+  m_PrefabInstance: {fileID: 7490994265346341258}
+  m_PrefabAsset: {fileID: 0}
