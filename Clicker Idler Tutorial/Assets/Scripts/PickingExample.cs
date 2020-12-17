@@ -48,10 +48,4 @@ public class PickingExample : MonoBehaviour
             rendererOnClickScript.material = materialSelect;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
