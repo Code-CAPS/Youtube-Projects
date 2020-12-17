@@ -37,6 +37,7 @@ public class GameState : MonoBehaviour
         enemyNew.transform.localPosition = Vector3.zero;
         enemyNew.transform.localRotation = Quaternion.identity;
 
+        // store the enemy
         enemyCurrent = enemyNew.GetComponent<Enemy>();
         UnityEngine.Assertions.Assert.IsNotNull(enemyCurrent);
     }
