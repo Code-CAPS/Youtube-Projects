@@ -6,6 +6,8 @@ public class GameState : MonoBehaviour
     public GameObject spawnPoint = null;
     public List<GameObject> enemyPrefabs = new List<GameObject>();
 
+    public AutoClicker autoClicker = null;
+
     Enemy enemyCurrent = null;
 
     // Start is called before the first frame update
@@ -13,6 +15,11 @@ public class GameState : MonoBehaviour
     {
         UnityEngine.Assertions.Assert.IsNotNull(spawnPoint);
         UnityEngine.Assertions.Assert.IsTrue(enemyPrefabs.Count > 0);
+
+        if (autoClicker != null)
+        {
+            autoClicker.theDelegate = AutoClickerDelegateImplementation;
+        }
 
         SpawnEnemy();
     }
@@ -39,6 +46,14 @@ public class GameState : MonoBehaviour
         }
     }
 
+    public void AutoClickerDelegateImplementation(AutoClicker autoClickerScript)
+    {
+        Debug.Log("Auto click!");
+
+        // Click the enemy.
+        ClickEnemy();
+    }
+
     public void OnClickDelegateImplementation(OnClick onClickScript)
     {
         // Click the enemy.
@@ -48,19 +63,20 @@ public class GameState : MonoBehaviour
     [ContextMenu("Click an enemy")]
     void ClickEnemy()
     {
-        UnityEngine.Assertions.Assert.IsNotNull(enemyCurrent);
-
-        // todo: have a subsystem drive the click damage variable
-        float damageClick = 2.0f;
-
-        // apply damage
-        enemyCurrent.Damage(damageClick);
-
-        // if the enemy is dead, destroy it and spawn a new enemy
-        if (enemyCurrent.healthCurrent <= 0.0f)
+        if (enemyCurrent != null)
         {
-            DestroyEnemy();
-            SpawnEnemy();
+            // todo: have a subsystem drive the click damage variable
+            float damageClick = 2.0f;
+
+            // apply damage
+            enemyCurrent.Damage(damageClick);
+
+            // if the enemy is dead, destroy it and spawn a new enemy
+            if (enemyCurrent.healthCurrent <= 0.0f)
+            {
+                DestroyEnemy();
+                SpawnEnemy();
+            }
         }
     }
 

@@ -4067,6 +4067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633312458}
   - component: {fileID: 1633312457}
+  - component: {fileID: 1633312459}
   m_Layer: 0
   m_Name: Game State
   m_TagString: Untagged
@@ -4106,6 +4107,7 @@ MonoBehaviour:
   - {fileID: 6347935693698283835, guid: 111a7cfce59e73f46b5961d12a9c24e0, type: 3}
   - {fileID: 4278343240509097529, guid: 10a626d8767246948b41090c706bf866, type: 3}
   - {fileID: 1378318872482793646, guid: 96f1c4841b893c34aaa3fe568ec5f0c9, type: 3}
+  autoClicker: {fileID: 1633312459}
 --- !u!4 &1633312458
 Transform:
   m_ObjectHideFlags: 0
@@ -4120,6 +4122,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1633312459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633312456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a54c771ac8d044cad56b06a6270400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickRate: 3
 --- !u!1001 &1684460029
 PrefabInstance:
   m_ObjectHideFlags: 0
