@@ -16,12 +16,12 @@ public class GameState : MonoBehaviour
         UnityEngine.Assertions.Assert.IsNotNull(spawnPoint);
         UnityEngine.Assertions.Assert.IsTrue(enemyPrefabs.Count > 0);
 
+        SpawnEnemy();
+
         if (autoClicker != null)
         {
             autoClicker.theDelegate = AutoClickerDelegateImplementation;
         }
-
-        SpawnEnemy();
     }
 
     // Update is called once per frame
@@ -48,7 +48,7 @@ public class GameState : MonoBehaviour
 
     public void AutoClickerDelegateImplementation(AutoClicker autoClickerScript)
     {
-        Debug.Log("Auto click!");
+        //Debug.Log("Auto-clicking!");
 
         // Click the enemy.
         ClickEnemy();
