@@ -77,6 +77,26 @@ public class GameState : MonoBehaviour
                 DestroyEnemy();
                 SpawnEnemy();
             }
+
+            // play the sound fx
+            if (enemyCurrent.onClickedAudioClip != null)
+            {
+                AudioSource audioSource = enemyCurrent.GetComponent<AudioSource>();
+                UnityEngine.Assertions.Assert.IsNotNull(audioSource);
+                audioSource.PlayOneShot(enemyCurrent.onClickedAudioClip);
+            }
+
+            // Add the color lerp.
+
+            var renderer = enemyCurrent.GetComponent<Renderer>();
+            UnityEngine.Assertions.Assert.IsNotNull(renderer);
+
+            ColorLerp colorLerp = enemyCurrent.GetComponent<ColorLerp>();
+            if (colorLerp != null)
+            {
+                Destroy(colorLerp);
+            }
+            enemyCurrent.gameObject.AddComponent<ColorLerp>();
         }
     }
 
