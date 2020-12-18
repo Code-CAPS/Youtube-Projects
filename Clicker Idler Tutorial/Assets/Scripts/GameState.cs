@@ -20,7 +20,48 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Apply damage over time
+        if (enemyCurrent != null)
+        {
+            // todo: have a subsystem drive the damage over time rate variable
+            float damageOverTimeRate = 0.2f;
 
+            // apply damage over time
+            float damageOverTime = damageOverTimeRate * Time.deltaTime;
+            enemyCurrent.Damage(damageOverTime);
+
+            // if the enemy is dead, destroy it and spawn a new enemy
+            if (enemyCurrent.healthCurrent <= 0.0f)
+            {
+                DestroyEnemy();
+                SpawnEnemy();
+            }
+        }
+    }
+
+    public void OnClickDelegateImplementation(OnClick onClickScript)
+    {
+        // Click the enemy.
+        ClickEnemy();
+    }
+
+    [ContextMenu("Click an enemy")]
+    void ClickEnemy()
+    {
+        UnityEngine.Assertions.Assert.IsNotNull(enemyCurrent);
+
+        // todo: have a subsystem drive the click damage variable
+        float damageClick = 2.0f;
+
+        // apply damage
+        enemyCurrent.Damage(damageClick);
+
+        // if the enemy is dead, destroy it and spawn a new enemy
+        if (enemyCurrent.healthCurrent <= 0.0f)
+        {
+            DestroyEnemy();
+            SpawnEnemy();
+        }
     }
 
     [ContextMenu("Spawn an enemy")]
@@ -40,6 +81,12 @@ public class GameState : MonoBehaviour
         // store the enemy
         enemyCurrent = enemyNew.GetComponent<Enemy>();
         UnityEngine.Assertions.Assert.IsNotNull(enemyCurrent);
+        enemyCurrent.healthCurrent = enemyCurrent.healthMax;
+
+        // set the click delegate
+        OnClick enemyClick = enemyCurrent.GetComponent<OnClick>();
+        UnityEngine.Assertions.Assert.IsNotNull(enemyClick);
+        enemyClick.theDelegate = OnClickDelegateImplementation;
     }
 
     void DestroyEnemy()

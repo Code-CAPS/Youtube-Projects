@@ -10,7 +10,7 @@ public class OnClick : MonoBehaviour
 
     void OnMouseUp()
     {
-        Debug.Log("Mouse Click on " + this.name);
+        //Debug.Log("Mouse Click on " + this.name);
 
         if (theDelegate != null)
         {
