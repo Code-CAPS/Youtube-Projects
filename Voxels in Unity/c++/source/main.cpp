@@ -26,6 +26,13 @@ BOOL APIENTRY DllMain(HINSTANCE hInst, DWORD reason, LPVOID lpReserved)
 
 /*
 
+"   vec3 offset;\n"
+"   offset.x = float( (attr_vertex       ) & 127u );\n"             // a[0..6]
+"   offset.y = float( (attr_vertex >>  7u) & 127u );\n"             // a[7..13]
+"   offset.z = float( (attr_vertex >> 14u) & 511u );\n"             // a[14..22]
+"   amb_occ  = float( (attr_vertex >> 23u) &  63u ) / 63.0;\n"      // a[23..28]
+"   texlerp  = float( (attr_vertex >> 29u)        ) /  7.0;\n"      // a[29..31]
+
 vnormal = normal_table[(facedata.w>>2u) & 31u];
 
 static float stbvox_default_normals[32][3] =

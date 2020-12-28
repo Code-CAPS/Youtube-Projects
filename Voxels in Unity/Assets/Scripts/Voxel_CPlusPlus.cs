@@ -22,6 +22,12 @@ public static class Voxel_CPlusPlus
     public static extern void mesh_set_input(IntPtr mm);
 
     [DllImport("voxel_cplusplus")]
+    public static extern void mesh_set_input_test_rectangle(IntPtr mm, int width, int height, int depth, int size_world);
+
+    [DllImport("voxel_cplusplus")]
+    public static extern void mesh_set_input_test_sphere(IntPtr mm, int radius, int size_world);
+
+    [DllImport("voxel_cplusplus")]
     public static extern void mesh_set_buffer(IntPtr mm, byte[] mesh_buffer, int mesh_buffer_length);
 
     [DllImport("voxel_cplusplus")]

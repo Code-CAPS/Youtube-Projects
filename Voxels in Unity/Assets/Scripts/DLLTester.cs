@@ -25,32 +25,5 @@ public class DLLTester : MonoBehaviour
 
         string theBufferString = System.Text.Encoding.Default.GetString(theBuffer);
         Debug.Log("Byte Buffer Function: " + theBufferString);
-
-        IntPtr meshMaker = Voxel_CPlusPlus.mesh_init();
-        if (meshMaker != IntPtr.Zero)
-        {
-            // TODO: We need to expand this implementation to actually give it input.
-            Voxel_CPlusPlus.mesh_set_input(meshMaker);
-
-            byte[] theBufferMesh = new byte[65536];
-            Voxel_CPlusPlus.mesh_set_buffer(meshMaker, theBufferMesh, theBufferMesh.Length);
-
-            int resultGeneration = Voxel_CPlusPlus.mesh_generate(meshMaker);
-            if (resultGeneration == 0)
-            {
-                // TODO: Implement buffer swaps.
-                Debug.LogWarning("TODO: Swapping buffers not implemented yet.");
-            }
-            else
-            {
-                // The mesh is fully generated.
-                int quadCount = Voxel_CPlusPlus.mesh_get_quad_count(meshMaker);
-                Debug.Log("Quad Count: " + quadCount.ToString());
-            }
-
-            // Clean up mesh in the DLL.
-            Voxel_CPlusPlus.mesh_free(meshMaker);
-            meshMaker = IntPtr.Zero;
-        }
     }
 }
