@@ -65,9 +65,9 @@ public class VoxelRectangleTest : MonoBehaviour
 
                     vertex.x = (float)x;
                     vertex.y = (float)y;
-                    vertex.z = (float)z;
 
-                    vertex.z = vertex.z * (float)(depth) / (float)(sizeWorld);
+                    float zScale = (float)(depth) / (float)(depth + 1.0f);
+                    vertex.z = (float)(z * zScale);
 
                     vertices[i] = vertex;
                 }
@@ -100,7 +100,7 @@ public class VoxelRectangleTest : MonoBehaviour
 
                 // the indices are a little more complicated
                 // we can not immediately store them
-                // we need to offset the new set of indices by the length of existing indices
+                // we need to offset the new set of indices by the number of pre-existing vertices
 
                 for (int i = 0; i < indices.Length; i++)
                 {
@@ -111,6 +111,56 @@ public class VoxelRectangleTest : MonoBehaviour
                 indicesFinal.AddRange(indices);
 
             } while (resultGeneration == 0);
+
+            // center the vertices around the origin
+            Vector3 max = Vector3.zero;
+            max.x = float.MinValue;
+            max.y = float.MinValue;
+            max.z = float.MinValue;
+
+            Vector3 min = Vector3.zero;
+            min.x = float.MaxValue;
+            min.y = float.MaxValue;
+            min.z = float.MaxValue;
+
+            foreach (var vertex in verticesFinal)
+            {
+                if (vertex.x < min.x)
+                {
+                    min.x = vertex.x;
+                }
+                if (vertex.x > max.x)
+                {
+                    max.x = vertex.x;
+                }
+
+                if (vertex.y < min.y)
+                {
+                    min.y = vertex.y;
+                }
+                if (vertex.y > max.y)
+                {
+                    max.y = vertex.y;
+                }
+
+                if (vertex.z < min.z)
+                {
+                    min.z = vertex.z;
+                }
+                if (vertex.z > max.z)
+                {
+                    max.z = vertex.z;
+                }
+            }
+
+            // the offset is half of the average of the max and min
+            Vector3 vertexOffset = (max + min) * 0.5f;
+            for (int i = 0; i < verticesFinal.Count; i++)
+            {
+                Vector3 vertex = verticesFinal[i];
+                vertex = vertex - vertexOffset;
+                verticesFinal[i] = vertex;
+            }
 
             // The mesh data is fully generated.
             // Load the mesh into Unity.
