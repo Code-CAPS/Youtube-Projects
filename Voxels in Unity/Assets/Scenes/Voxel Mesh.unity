@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 594257687}
   - component: {fileID: 594257685}
   m_Layer: 0
-  m_Name: Voxel Sphere Test
+  m_Name: Voxel Mesh Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 2048345652}
   - component: {fileID: 2048345651}
   m_Layer: 0
-  m_Name: Voxel Rectangle Test
+  m_Name: Voxel Mesh Rectangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

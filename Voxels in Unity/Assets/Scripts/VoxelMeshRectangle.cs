@@ -2,31 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VoxelSphereTest : MonoBehaviour
+public class VoxelMeshRectangle : MonoBehaviour
 {
     public MeshFilter meshFilter = null;
 
-    public string meshName = "Voxel Sphere";
+    public string meshName = "Voxel Rectangle";
 
-    public int diameter = 5;
+    public int width = 10;
+    public int height = 10;
+    public int depth = 10;
     public int paddingWorld = 2;
 
-    private int bufferSize = 6553;
+    private int bufferSize = 65536;
 
     // Start is called before the first frame update
     void Start()
     {
         UnityEngine.Assertions.Assert.IsNotNull(meshFilter);
 
-        UnityEngine.Assertions.Assert.IsTrue(bufferSize > 0);
-        UnityEngine.Assertions.Assert.IsTrue(5 > 0);
+        UnityEngine.Assertions.Assert.IsTrue(width > 0);
+        UnityEngine.Assertions.Assert.IsTrue(height > 0);
+        UnityEngine.Assertions.Assert.IsTrue(depth > 0);
         UnityEngine.Assertions.Assert.IsTrue(paddingWorld > 0);
 
         IntPtr meshMaker = Voxel_CPlusPlus.mesh_init();
         if (meshMaker != IntPtr.Zero)
         {
-            int sizeWorld = diameter + paddingWorld;
-            Voxel_CPlusPlus.mesh_set_input_test_sphere(meshMaker, diameter / 2, sizeWorld);
+            int sizeWorld = (int)(Mathf.Max(new float[] { width, height, depth }) + paddingWorld);
+            Voxel_CPlusPlus.mesh_set_input_test_rectangle(meshMaker, width, height, depth, sizeWorld);
 
             List<Vector3> verticesFinal = new List<Vector3>();
             List<int> indicesFinal = new List<int>();
@@ -62,7 +65,9 @@ public class VoxelSphereTest : MonoBehaviour
 
                     vertex.x = (float)x;
                     vertex.y = (float)y;
-                    vertex.z = (float)z * (float)(diameter) / (float)((diameter) + 1.0f);
+
+                    float zScale = (float)(depth) / (float)(depth + 1.0f);
+                    vertex.z = (float)(z * zScale);
 
                     vertices[i] = vertex;
                 }
