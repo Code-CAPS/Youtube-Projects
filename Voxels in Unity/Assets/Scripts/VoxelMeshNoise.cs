@@ -9,11 +9,12 @@ public class VoxelMeshNoise : MonoBehaviour
     {
         UnityEngine.Assertions.Assert.IsNotNull(theNoise);
 
-        // use the noise to create voxel input data
-        // use the voxel input data to create a mesh
+        // create some 3D noise
+        // use the noise to create an input data set for voxel generation
+        // create a mesh from the voxel input data
         // render the mesh
 
-        // TODO: implement later
+        // todo: implement later
     }
 
     // Update is called once per frame

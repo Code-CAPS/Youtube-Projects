@@ -8,8 +8,8 @@
 #endif
 
 extern "C" UNITY_WRAPPER_LIBRARY_EXPORT int test_integer();
-extern "C" UNITY_WRAPPER_LIBRARY_EXPORT const char* hello_world();
-extern "C" UNITY_WRAPPER_LIBRARY_EXPORT void hello_world_free(const char* the_string);
+extern "C" UNITY_WRAPPER_LIBRARY_EXPORT const char* test_hello_world();
+extern "C" UNITY_WRAPPER_LIBRARY_EXPORT void test_hello_world_free(const char* the_string);
 
 extern "C" UNITY_WRAPPER_LIBRARY_EXPORT void test_buffer(unsigned char* buffer, int buffer_length);
 

@@ -15,13 +15,13 @@ int test_integer()
 	return 23;
 }
 
-const char* hello_world()
+const char* test_hello_world()
 {
 	const char* result = new char[] { "Hello World" };
 	return result;
 }
 
-void hello_world_free(const char* the_string)
+void test_hello_world_free(const char* the_string)
 {
 	if (the_string != nullptr)
 	{

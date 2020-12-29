@@ -7,10 +7,10 @@ public static class Voxel_CPlusPlus
     public static extern int test_integer();
 
     [DllImport("voxel_cplusplus")]
-    public static extern IntPtr hello_world();
+    public static extern IntPtr test_hello_world();
 
     [DllImport("voxel_cplusplus")]
-    public static extern void hello_world_free(IntPtr the_string);
+    public static extern void test_hello_world_free(IntPtr the_string);
 
     [DllImport("voxel_cplusplus")]
     public static extern void test_buffer(byte[] buffer, int buffer_length);
@@ -18,17 +18,21 @@ public static class Voxel_CPlusPlus
     [DllImport("voxel_cplusplus")]
     public static extern IntPtr mesh_init();
 
+    // todo: implement this later with noise data
     [DllImport("voxel_cplusplus")]
     public static extern void mesh_set_input(IntPtr mm);
 
     [DllImport("voxel_cplusplus")]
-    public static extern void mesh_set_input_test_rectangle(IntPtr mm, int width, int height, int depth, int size_world);
+    public static extern void mesh_set_input_test_rectangle(IntPtr mm, int width,
+        int height, int depth, int size_world);
 
     [DllImport("voxel_cplusplus")]
-    public static extern void mesh_set_input_test_sphere(IntPtr mm, int radius, int size_world);
+    public static extern void mesh_set_input_test_sphere(IntPtr mm, int radius,
+        int size_world);
 
     [DllImport("voxel_cplusplus")]
-    public static extern void mesh_set_buffer(IntPtr mm, byte[] mesh_buffer, int mesh_buffer_length);
+    public static extern void mesh_set_buffer(IntPtr mm, byte[] mesh_buffer,
+        int mesh_buffer_length);
 
     [DllImport("voxel_cplusplus")]
     public static extern int mesh_generate(IntPtr mm);
