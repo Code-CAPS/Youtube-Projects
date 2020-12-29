@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-public class Perlin : MonoBehaviour
+public class Noise : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        // TODO: Implement later.
+        // create some 3D noise
+        // maybe perlin or simplex?
+
+        // TODO: implement later
     }
 
     // Update is called once per frame
