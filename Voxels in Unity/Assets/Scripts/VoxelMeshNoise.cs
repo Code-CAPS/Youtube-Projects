@@ -11,6 +11,7 @@ public class VoxelMeshNoise : MonoBehaviour
 
         // use the noise to create voxel input data
         // use the voxel input data to create a mesh
+        // render the mesh
 
         // TODO: implement later
     }

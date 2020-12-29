@@ -6,7 +6,7 @@ public class Noise : MonoBehaviour
     void Start()
     {
         // create some 3D noise
-        // maybe perlin or simplex?
+        //     maybe perlin or simplex?
 
         // TODO: implement later
     }
