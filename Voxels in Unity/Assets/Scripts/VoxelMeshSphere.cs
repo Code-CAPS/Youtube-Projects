@@ -9,7 +9,7 @@ public class VoxelMeshSphere : MonoBehaviour
     public string meshName = "Voxel Sphere";
 
     public int diameter = 5;
-    public int paddingWorld = 2;
+    public int padding = 2;
 
     private int bufferSize = 6553;
 
@@ -18,42 +18,39 @@ public class VoxelMeshSphere : MonoBehaviour
     {
         UnityEngine.Assertions.Assert.IsNotNull(meshFilter);
 
+        UnityEngine.Assertions.Assert.IsTrue(diameter > 0);
+        UnityEngine.Assertions.Assert.IsTrue(padding > 0);
+
         UnityEngine.Assertions.Assert.IsTrue(bufferSize > 0);
-        UnityEngine.Assertions.Assert.IsTrue(5 > 0);
-        UnityEngine.Assertions.Assert.IsTrue(paddingWorld > 0);
 
         IntPtr meshMaker = Voxel_CPlusPlus.mesh_init();
         if (meshMaker != IntPtr.Zero)
         {
-            int sizeWorld = diameter + paddingWorld;
+            int sizeWorld = diameter + padding;
             Voxel_CPlusPlus.mesh_set_input_test_sphere(meshMaker, diameter / 2, sizeWorld);
 
-            List<Vector3> verticesFinal = new List<Vector3>();
-            List<int> indicesFinal = new List<int>();
+            List<Vector3> vertices = new List<Vector3>();
+            List<int> indices = new List<int>();
 
             int resultGeneration = 0;
             byte[] buffer = new byte[bufferSize];
             do
             {
-                // generate the mesh information
-                Voxel_CPlusPlus.mesh_set_buffer(meshMaker, buffer, bufferSize);
+                Voxel_CPlusPlus.mesh_set_buffer(meshMaker, buffer, buffer.Length);
+
                 resultGeneration = Voxel_CPlusPlus.mesh_generate(meshMaker);
 
-                // process the mesh information
                 int quadCount = Voxel_CPlusPlus.mesh_get_quad_count(meshMaker);
-
                 int vertexCount = quadCount * 4;
 
-                Vector3[] vertices = new Vector3[vertexCount];
+                Vector3[] verticesInner = new Vector3[vertexCount];
                 for (int i = 0; i < vertexCount; i++)
                 {
                     Vector3 vertex = Vector3.zero;
 
-                    // the 8 is from 4 bytes for the vertex data and 4 bytes for the face data
+                    // note: there are 4 bytes of vertex data and 4 bytes of face data
                     int index = (i * 8);
 
-                    // todo: use the face data
-                    //       we are just using the vertex data currently
                     uint value = BitConverter.ToUInt32(buffer, index);
 
                     ushort x = (ushort)((value) & 127u);
@@ -62,48 +59,48 @@ public class VoxelMeshSphere : MonoBehaviour
 
                     vertex.x = (float)x;
                     vertex.y = (float)y;
-                    vertex.z = (float)z * (float)(diameter) / (float)((diameter) + 1.0f);
+                    vertex.z = (float)z;
+
+                    vertex.z = vertex.z + ((float)diameter / ((float)diameter + 1.0f));
 
                     vertices[i] = vertex;
                 }
 
-                // Create an index buffer to render the quads as triangles.
+                // create an index buffer
 
-                // each quad is two triangles and each triangle is three indices
+                // each quad has two triangles where each triangle has three indices
                 int indexCount = quadCount * 6;
-                int[] indices = new int[indexCount];
+                int[] indicesInner = new int[indexCount];
 
                 for (int i = 0; i < quadCount; i++)
                 {
-                    // each quad has six indices
+                    // each quad has 6 indices
                     int theIndex = i * 6;
-                    // each quad has four vertices
+                    // each quad has 4 vertices
                     int theVertex = i * 4;
 
-                    indices[theIndex + 0] = theVertex + 0;
-                    indices[theIndex + 1] = theVertex + 3;
-                    indices[theIndex + 2] = theVertex + 1;
+                    // triangle one
+                    indicesInner[theIndex + 0] = theVertex + 0;
+                    indicesInner[theIndex + 1] = theVertex + 3;
+                    indicesInner[theIndex + 2] = theVertex + 1;
 
-                    indices[theIndex + 3] = theVertex + 1;
-                    indices[theIndex + 4] = theVertex + 3;
-                    indices[theIndex + 5] = theVertex + 2;
+                    // triangle two
+                    indicesInner[theIndex + 3] = theVertex + 1;
+                    indicesInner[theIndex + 4] = theVertex + 3;
+                    indicesInner[theIndex + 5] = theVertex + 2;
                 }
 
-                // the vertices we can immediately store in the larger pool of vertices
-                int offsetIndex = verticesFinal.Count;
-                verticesFinal.AddRange(vertices);
+                // we can immediately store the vertices
+                int indexOffset = vertices.Count;
+                vertices.AddRange(verticesInner);
 
-                // the indices are a little more complicated
-                // we can not immediately store them
-                // we need to offset the new set of indices by the number of pre-existing vertices
-
-                for (int i = 0; i < indices.Length; i++)
+                // for the indices, we need to offset them by any pre-existing vertices
+                for (int i = 0; i < indicesInner.Length; i++)
                 {
-                    indices[i] = indices[i] + offsetIndex;
+                    indicesInner[i] = indicesInner[i] + indexOffset;
                 }
 
-                // now we can store them
-                indicesFinal.AddRange(indices);
+                indices.AddRange(indicesInner);
 
             } while (resultGeneration == 0);
 
@@ -118,68 +115,73 @@ public class VoxelMeshSphere : MonoBehaviour
             min.y = float.MaxValue;
             min.z = float.MaxValue;
 
-            foreach (var vertex in verticesFinal)
+            for (int i = 0; i < vertices.Count; i++)
             {
-                if (vertex.x < min.x)
-                {
-                    min.x = vertex.x;
-                }
+                Vector3 vertex = vertices[i];
+
                 if (vertex.x > max.x)
                 {
                     max.x = vertex.x;
-                }
-
-                if (vertex.y < min.y)
-                {
-                    min.y = vertex.y;
                 }
                 if (vertex.y > max.y)
                 {
                     max.y = vertex.y;
                 }
-
-                if (vertex.z < min.z)
-                {
-                    min.z = vertex.z;
-                }
                 if (vertex.z > max.z)
                 {
                     max.z = vertex.z;
                 }
+
+                if (vertex.x < min.x)
+                {
+                    min.x = vertex.x;
+                }
+                if (vertex.y < min.y)
+                {
+                    min.y = vertex.y;
+                }
+                if (vertex.z < min.z)
+                {
+                    min.z = vertex.z;
+                }
             }
 
-            // the offset is half of the average of the max and min
-            Vector3 vertexOffset = (max + min) * 0.5f;
-            for (int i = 0; i < verticesFinal.Count; i++)
+            // offset the vertices to center them around the origin
+            Vector3 offset = (max + min) * 0.5f;
+            for (int i = 0; i < vertices.Count; i++)
             {
-                Vector3 vertex = verticesFinal[i];
-                vertex = vertex - vertexOffset;
-                verticesFinal[i] = vertex;
+                Vector3 vertex = vertices[i];
+                vertex = vertex - offset;
+                vertices[i] = vertex;
             }
 
-            // The mesh data is fully generated.
-            // Load the mesh into Unity.
-
+            // Store the mesh in Unity.
             Mesh theMesh = new Mesh();
             theMesh.name = meshName;
 
-            Vector3[] verticesArray = new Vector3[verticesFinal.Count];
-            verticesFinal.CopyTo(verticesArray);
-            theMesh.vertices = verticesArray;
+            Vector3[] verticesFinal = new Vector3[vertices.Count];
+            vertices.CopyTo(verticesFinal);
+            theMesh.vertices = verticesFinal;
 
-            int[] indicesArray = new int[indicesFinal.Count];
-            indicesFinal.CopyTo(indicesArray);
-            theMesh.triangles = indicesArray;
+            int[] indicesFinal = new int[indices.Count];
+            indices.CopyTo(indicesFinal);
+            theMesh.triangles = indicesFinal;
 
             // todo: use the normals from the voxel library
             theMesh.RecalculateNormals();
             theMesh.RecalculateBounds();
 
+            // store the mesh on the mesh filter
             meshFilter.sharedMesh = theMesh;
 
-            // Clean up mesh in the DLL.
             Voxel_CPlusPlus.mesh_free(meshMaker);
             meshMaker = IntPtr.Zero;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 }

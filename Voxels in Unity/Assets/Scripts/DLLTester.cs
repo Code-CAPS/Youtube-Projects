@@ -8,22 +8,24 @@ public class DLLTester : MonoBehaviour
     void Start()
     {
         int resultInteger = Voxel_CPlusPlus.test_integer();
-        Debug.Log("The test integer is: " + resultInteger.ToString());
+        Debug.Log("The test integer is " + resultInteger.ToString() + ".");
 
-        IntPtr resultCharacterPointer = Voxel_CPlusPlus.hello_world();
-        if (resultCharacterPointer != IntPtr.Zero)
+        IntPtr helloWorldString = Voxel_CPlusPlus.test_hello_world();
+        if (helloWorldString != null)
         {
-            string resultString = Marshal.PtrToStringAnsi(resultCharacterPointer);
+            string resultString = Marshal.PtrToStringAnsi(helloWorldString);
 
-            Debug.Log("Hello World String Function: " + resultString);
+            Debug.Log("Test Hello World: " + resultString);
 
-            Voxel_CPlusPlus.hello_world_free(resultCharacterPointer);
+            Voxel_CPlusPlus.test_hello_world_free(helloWorldString);
+            helloWorldString = IntPtr.Zero;
         }
 
         byte[] theBuffer = new byte[256];
         Voxel_CPlusPlus.test_buffer(theBuffer, theBuffer.Length);
 
-        string theBufferString = System.Text.Encoding.Default.GetString(theBuffer);
-        Debug.Log("Byte Buffer Function: " + theBufferString);
+        string bufferString = System.Text.Encoding.Default.GetString(theBuffer);
+
+        Debug.Log("Test Buffer: " + bufferString);
     }
 }
