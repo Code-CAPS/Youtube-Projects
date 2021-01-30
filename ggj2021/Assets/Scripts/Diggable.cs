@@ -8,7 +8,7 @@ public class Diggable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        UnityEngine.Assertions.Assert.IsTrue(value > 0.0f);
     }
 
     // Update is called once per frame

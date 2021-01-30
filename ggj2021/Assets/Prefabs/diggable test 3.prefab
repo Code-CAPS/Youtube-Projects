@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7409752318981862446}
   - component: {fileID: 7409752318981862445}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: diggable test 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223d2d8dd002cb24898139ad6a2d9430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 10
+  valueMax: 5
+  value: 5
 --- !u!114 &7409752318981862445
 MonoBehaviour:
   m_ObjectHideFlags: 0
