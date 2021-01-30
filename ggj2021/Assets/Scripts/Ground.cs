@@ -11,8 +11,6 @@ public class Ground : MonoBehaviour
     {
         UnityEngine.Assertions.Assert.IsNotNull(spawnPoint);
         UnityEngine.Assertions.Assert.IsTrue(diggablePrefabs.Count > 0);
-
-        this.SpawnDiggable();
     }
 
     // Update is called once per frame
@@ -21,7 +19,7 @@ public class Ground : MonoBehaviour
 
     }
 
-    void SpawnDiggable()
+    public GameObject SpawnDiggable()
     {
         int seed = Random.Range(0, diggablePrefabs.Count);
         var diggablePrefab = diggablePrefabs[seed];
@@ -29,5 +27,7 @@ public class Ground : MonoBehaviour
         var diggable = Instantiate(diggablePrefab, spawnPoint.transform);
         diggable.transform.localPosition = Vector3.zero;
         diggable.transform.localRotation = Quaternion.identity;
+
+        return diggable.gameObject;
     }
 }
