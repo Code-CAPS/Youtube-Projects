@@ -25,7 +25,7 @@ public class VoxelMeshSphere : MonoBehaviour
         if (meshMaker != IntPtr.Zero)
         {
             int sizeWorld = diameter + paddingWorld;
-            Voxel_CPlusPlus.mesh_set_input_test_sphere(meshMaker, diameter, sizeWorld);
+            Voxel_CPlusPlus.mesh_set_input_test_sphere(meshMaker, diameter / 2, sizeWorld);
 
             List<Vector3> verticesFinal = new List<Vector3>();
             List<int> indicesFinal = new List<int>();
@@ -180,11 +180,5 @@ public class VoxelMeshSphere : MonoBehaviour
             Voxel_CPlusPlus.mesh_free(meshMaker);
             meshMaker = IntPtr.Zero;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

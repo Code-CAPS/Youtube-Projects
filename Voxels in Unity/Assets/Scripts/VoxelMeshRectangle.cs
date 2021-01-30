@@ -187,10 +187,4 @@ public class VoxelMeshRectangle : MonoBehaviour
             meshMaker = IntPtr.Zero;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
