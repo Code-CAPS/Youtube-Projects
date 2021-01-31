@@ -616,9 +616,9 @@ MonoBehaviour:
   spawnPoint: {fileID: 1717822044}
   diggablePrefabs:
   - {fileID: 8119511038426475037, guid: a3e1869d32b1e1841adbaf9e95c1d70c, type: 3}
-  - {fileID: 4079302261114741732, guid: 9e47fd4e145fc8345ab62620df6bc08a, type: 3}
-  - {fileID: 7409752318981862446, guid: 88021ec489581184da91d6c9c085c344, type: 3}
-  - {fileID: 3166246386216911991, guid: 0f202df62d34a6347ad44eb73169eebd, type: 3}
+  - {fileID: 8119511038426475037, guid: a20c36cb233c8364cbf6336cc370d311, type: 3}
+  - {fileID: 8119511038426475037, guid: e012eb7443cef2a4fbe083aa756c1ea2, type: 3}
+  - {fileID: 8119511038426475037, guid: cf2d7de097ac1e845badc2124a2700ce, type: 3}
 --- !u!4 &822020714
 Transform:
   m_ObjectHideFlags: 0
