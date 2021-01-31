@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class WorldController : MonoBehaviour
 {
+    public AudioClip[] shovelSounds = null;
+
     public float shakeTime = 0.15f;
     public float shakeDeltaPosition = 0.1f;
     public float shakeDeltaRotation = 8.0f;
@@ -21,27 +23,18 @@ public class WorldController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UnityEngine.Assertions.Assert.IsNotNull(shovelSounds);
+        UnityEngine.Assertions.Assert.IsTrue(shovelSounds.Length > 0);
+
         UnityEngine.Assertions.Assert.IsNotNull(ground);
         UnityEngine.Assertions.Assert.IsNotNull(player);
-
-        this.SpawnDiggable();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void SpawnDiggable()
     {
         this.animatedSuccess = false;
 
-        if (diggable != null)
-        {
-            Destroy(diggable.gameObject);
-            diggable = null;
-        }
+        this.DestroyDiggable();
 
         GameObject diggableGO = ground.SpawnDiggable();
         diggable = diggableGO.GetComponent<Diggable>();
@@ -53,14 +46,21 @@ public class WorldController : MonoBehaviour
         onClick.theDelegate = OnClickDelegate;
     }
 
+    public void DestroyDiggable()
+    {
+        if (diggable != null)
+        {
+            Destroy(diggable.gameObject);
+        }
+        diggable = null;
+    }
+
     // player click delegate
     public void OnClickDelegate(OnClick onClickScript)
     {
         if (this.animatedSuccess)
         {
-            Destroy(diggable.gameObject);
-            diggable = null;
-
+            this.DestroyDiggable();
             this.SpawnDiggable();
         }
         else
@@ -92,6 +92,10 @@ public class WorldController : MonoBehaviour
 
             diggable.value = diggable.value - player.clickStrength;
             diggable.value = Mathf.Clamp(diggable.value, 0.0f, float.MaxValue);
+
+            int seed = Random.Range(0, this.shovelSounds.Length);
+            var digSoundFX = this.shovelSounds[seed];
+            diggable.PlayDigSoundFX(digSoundFX);
 
             if (diggable.value <= 0.0f)
             {
