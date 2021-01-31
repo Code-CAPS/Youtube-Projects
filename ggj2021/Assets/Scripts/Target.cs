@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TargetMain : MonoBehaviour
+public class Target : MonoBehaviour
 {
     public float speed = 10.0f;
     public Transform[] path = null;

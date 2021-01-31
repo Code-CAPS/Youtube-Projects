@@ -50,6 +50,8 @@ public class MainSceneController : MonoBehaviour
             canvasMain.SetActive(false);
             canvasWorld.SetActive(false);
             canvasCredits.SetActive(true);
+
+            this.mainCameraController.StartPathCredits();
         }
     }
 }
