@@ -2,6 +2,8 @@
 
 public class MainSceneController : MonoBehaviour
 {
+    public MainCameraController mainCameraController = null;
+
     public GameObject canvasMain = null;
     public GameObject canvasWorld = null;
     public GameObject canvasCredits = null;
@@ -39,6 +41,8 @@ public class MainSceneController : MonoBehaviour
             canvasMain.SetActive(true);
             canvasWorld.SetActive(false);
             canvasCredits.SetActive(false);
+
+            this.mainCameraController.StartPathMain();
         }
         // credits
         else
