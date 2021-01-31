@@ -1,15 +1,36 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UIMain : MonoBehaviour
 {
-    public void OnNew()
+    public MainSceneController mainSceneController = null;
+
+    void Start()
     {
-        SceneManager.LoadScene(Constants.SCENE_CLICKER);
+        UnityEngine.Assertions.Assert.IsNotNull(mainSceneController);
     }
 
-    public void OnQuit()
+    public void OnNew()
+    {
+        mainSceneController.SetGameState(GameState.World);
+    }
+
+    public void OnCredits()
+    {
+        mainSceneController.SetGameState(GameState.Credits);
+    }
+
+    public void OnQuitMain()
     {
         Application.Quit();
+    }
+
+    public void OnQuitCredits()
+    {
+        mainSceneController.SetGameState(GameState.MainMenu);
+    }
+
+    public void OnQuitWorld()
+    {
+        mainSceneController.SetGameState(GameState.MainMenu);
     }
 }
