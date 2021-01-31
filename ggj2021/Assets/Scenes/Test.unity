@@ -1109,6 +1109,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165be48302638664eae06f27e6a6f629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeTime: 0.15
+  shakeDeltaPosition: 0.1
+  shakeDeltaRotation: 8
+  shakeDeltaScale: 0.05
+  tweenSuccessTime: 3
+  tweenSuccessPositionDelta: {x: 0, y: 1.5, z: 0}
+  tweenSuccessRotation: {x: 0, y: 360, z: 0}
   ground: {fileID: 822020711}
   player: {fileID: 99313377}
 --- !u!4 &2046077612
