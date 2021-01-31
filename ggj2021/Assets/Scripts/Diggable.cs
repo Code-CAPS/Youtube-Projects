@@ -13,7 +13,7 @@ public class Diggable : MonoBehaviour
         UnityEngine.Assertions.Assert.IsTrue(value > 0.0f);
     }
 
-    public void PlayDigSoundFX(AudioClip audioClip)
+    public void PlaySoundFX(AudioClip audioClip)
     {
         audioSource.PlayOneShot(audioClip);
     }

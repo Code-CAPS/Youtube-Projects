@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WorldController : MonoBehaviour
 {
+    public AudioClip successSound = null;
     public AudioClip[] shovelSounds = null;
 
     public float shakeTime = 0.15f;
@@ -23,6 +24,7 @@ public class WorldController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UnityEngine.Assertions.Assert.IsNotNull(successSound);
         UnityEngine.Assertions.Assert.IsNotNull(shovelSounds);
         UnityEngine.Assertions.Assert.IsTrue(shovelSounds.Length > 0);
 
@@ -93,12 +95,16 @@ public class WorldController : MonoBehaviour
             diggable.value = diggable.value - player.clickStrength;
             diggable.value = Mathf.Clamp(diggable.value, 0.0f, float.MaxValue);
 
-            int seed = Random.Range(0, this.shovelSounds.Length);
-            var digSoundFX = this.shovelSounds[seed];
-            diggable.PlayDigSoundFX(digSoundFX);
-
-            if (diggable.value <= 0.0f)
+            if (diggable.value > 0.0f)
             {
+                int seed = Random.Range(0, this.shovelSounds.Length);
+                var digSoundFX = this.shovelSounds[seed];
+                diggable.PlaySoundFX(digSoundFX);
+            }
+            else
+            {
+                diggable.PlaySoundFX(this.successSound);
+
                 var collider = diggable.GetComponent<Collider>();
                 collider.enabled = false;
 

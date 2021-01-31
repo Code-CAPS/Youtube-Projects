@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8119511038426475037}
   - component: {fileID: 8119511038426475036}
   - component: {fileID: 3187342985591854059}
-  - component: {fileID: 3163263083146693933}
+  - component: {fileID: 410334738481331024}
   m_Layer: 0
   m_Name: diggable test 3
   m_TagString: Untagged
@@ -207,7 +207,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!136 &3163263083146693933
+--- !u!136 &410334738481331024
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,7 +217,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.3
+  m_Radius: 1.4
   m_Height: 1.9201679
   m_Direction: 1
-  m_Center: {x: 0.40224564, y: -0.027859688, z: -0.35442808}
+  m_Center: {x: 0.45792592, y: 0.9496498, z: -0.08769566}
